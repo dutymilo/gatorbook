@@ -6,36 +6,9 @@ const tweetTextArea = tweetTextAreas[0];
 const userNames = document.getElementsByClassName("username-text-area");
 const userName = userNames[0];
 
-tweetButton.addEventListener("click", function () {
+tweetButton.addEventListener("click", async function () {
   const tweetText = tweetTextArea.value;
 
-  const jsonTweet = {
-    tweetText: tweetText,
-    username: userName,
-    likes: 0,
-    comments: 0,
-    retweets: 0,
-  };
-
-  const options = {
-    method: "POST",
-    body: JSON.stringify(jsonTweet),
-    headers: {
-      "Content-Type": "application/json",
-    },
-  };
-
-  //Not Built Yet
-  fetch("/posts", options)
-    .then((res) => res.json())
-    .then((res) => {
-      console.log(res);
-      createTweet(res);
-      $(".tweet-feed").load(".tweet-feed");
-    })
-    .then(() => {
-      tweetText2.value = "";
-    });
 });
 
 async function getPosts() {
@@ -74,6 +47,118 @@ async function addComment(postId, username, text) {
       username,
       text,
     },
+  });
+  return await data.json();
+}
+
+async function likePost(postId, username) {
+  const data = await fetch(`/like-post/`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: {
+      postId,
+      username,
+    },
+  });
+  return await data.json();
+}
+
+async function likeComment(postId, commentId, username) {
+  const data = await fetch(`/like-comment/`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: {
+      postId,
+      commentId,
+      username,
+  }});
+  return await data.json();
+}
+
+async function likePost(postId, username) {
+  const data = await fetch(`/like-post/`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: {
+      postId,
+      username,
+    },
+  });
+  return await data.json();
+}
+
+async function likeComment(postId, commentId, username) {
+  const data = await fetch(`/like-comment/`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: {
+      postId,
+      commentId,
+      username,
+  });
+  return await data.json();
+}
+
+async function likePost(postId, username) {
+  const data = await fetch(`/like-post/`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: {
+      postId,
+      username,
+    },
+  });
+  return await data.json();
+}
+
+async function likeComment(postId, commentId, username) {
+  const data = await fetch(`/like-comment/`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: {
+      postId,
+      commentId,
+      username,
+  });
+  return await data.json();
+}
+
+async function likePost(postId, username) {
+  const data = await fetch(`/like-post/`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: {
+      postId,
+      username,
+    },
+  });
+  return await data.json();
+}
+
+async function likeComment(postId, commentId, username) {
+  const data = await fetch(`/like-comment/`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: {
+      postId,
+      commentId,
+      username,
   });
   return await data.json();
 }
